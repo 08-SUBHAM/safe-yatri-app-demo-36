@@ -68,8 +68,8 @@ const Welcome = () => {
           
           <Button 
             onClick={() => navigate('/login')}
-            variant="outline" 
-            className="w-full border-white/30 text-white hover:bg-white/10 font-medium py-3"
+            variant="outline-light" 
+            className="w-full font-medium py-3"
           >
             Already have an account? Login
           </Button>
