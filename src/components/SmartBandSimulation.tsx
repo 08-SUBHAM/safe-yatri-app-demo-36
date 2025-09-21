@@ -103,7 +103,7 @@ const SmartBandSimulation = () => {
             <MapPin className="w-6 h-6 text-primary" />
             <div>
               <p className="text-sm text-muted-foreground">Location</p>
-              <p className="font-medium text-sm">Connaught Place</p>
+              <p className="font-medium text-sm">Police Bazaar, Shillong</p>
               <p className="text-xs text-muted-foreground">Accurate within 3m</p>
             </div>
           </div>

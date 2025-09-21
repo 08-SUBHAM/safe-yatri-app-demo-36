@@ -19,7 +19,7 @@ const SoloFemaleMode = () => {
       name: "Women's Safety Zones",
       description: "Well-lit areas with increased security",
       icon: Shield,
-      locations: ["Connaught Place", "Khan Market", "Karol Bagh"],
+      locations: ["Police Bazaar, Shillong", "Iewduh Market", "Laitumkhrah"],
       status: "Available"
     },
     {
@@ -38,7 +38,7 @@ const SoloFemaleMode = () => {
       name: "Women's Escort Services", 
       description: "Safe accompaniment for late hours",
       icon: Shield,
-      services: ["Mall visits", "Evening tours", "Transport assistance"],
+      services: ["Market visits", "Evening tours", "Transport assistance"],
       status: "Available"
     }
   ];

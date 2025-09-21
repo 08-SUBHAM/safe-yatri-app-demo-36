@@ -26,9 +26,9 @@ const PoliceDashboard = () => {
 
   // Mock data for police dashboard
   const touristClusters = [
-    { area: "Connaught Place", count: 847, riskLevel: "Medium", lastUpdate: "5 min ago" },
-    { area: "India Gate", count: 1205, riskLevel: "Low", lastUpdate: "2 min ago" },
-    { area: "Red Fort", count: 623, riskLevel: "High", lastUpdate: "1 min ago" },
+    { area: "Police Bazaar, Shillong", count: 847, riskLevel: "Medium", lastUpdate: "5 min ago" },
+    { area: "Kamakhya Temple, Guwahati", count: 1205, riskLevel: "Low", lastUpdate: "2 min ago" },
+    { area: "Tawang Monastery", count: 623, riskLevel: "High", lastUpdate: "1 min ago" },
     { area: "Chandni Chowk", count: 892, riskLevel: "High", lastUpdate: "3 min ago" },
     { area: "Lotus Temple", count: 456, riskLevel: "Low", lastUpdate: "8 min ago" }
   ];
@@ -37,7 +37,7 @@ const PoliceDashboard = () => {
     {
       id: "SOS-2024-001",
       tourist: "Priya Sharma", 
-      location: "MG Road, Near Metro Station",
+      location: "MG Road, Gangtok",
       time: "2 minutes ago",
       priority: "High",
       status: "Active",
@@ -46,7 +46,7 @@ const PoliceDashboard = () => {
     {
       id: "SOS-2024-002",
       tourist: "John Williams",
-      location: "Karol Bagh Market", 
+      location: "Ima Keithel Market, Imphal", 
       time: "5 minutes ago",
       priority: "Medium",
       status: "Responding",
@@ -77,7 +77,7 @@ const PoliceDashboard = () => {
       id: "FIR-AUTO-2024-446",
       incident: "Overcharging Complaint", 
       tourist: "Lisa Park",
-      location: "Janpath Market",
+      location: "Iewduh Market, Shillong",
       time: "1 hour ago",
       status: "Under Review", 
       officer: "ASI Meera Singh"
@@ -310,7 +310,7 @@ const PoliceDashboard = () => {
                           </div>
                           <div>
                             <p className="text-muted-foreground">Last Location:</p>
-                            <p className="font-medium">Connaught Place</p>
+                            <p className="font-medium">Police Bazaar, Shillong</p>
                           </div>
                         </div>
                       </CardContent>

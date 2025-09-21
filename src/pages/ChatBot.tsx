@@ -26,8 +26,8 @@ const ChatBot = () => {
   // Mock responses for common queries
   const botResponses: { [key: string]: any } = {
     "bus stop": {
-      text: "🚌 Here are the nearest bus stops to Connaught Place:\n\n• **Connaught Place Metro Station** - 2 min walk\n• **Jantar Mantar Bus Stop** - 5 min walk\n• **Parliament Street Bus Stop** - 8 min walk\n\nBuses: 101, 102, 103, DTC Blue Line",
-      suggestions: ["Bus timings", "Metro connectivity", "Taxi booking"]
+      text: "🚌 Here are the nearest bus stops to Police Bazaar:\n\n• **Police Bazaar Bus Stand** - 2 min walk\n• **Khyndai Lad Bus Stop** - 5 min walk\n• **Motphran Bus Stand** - 8 min walk\n\nBuses: Shillong City Bus, MTDC Services",
+      suggestions: ["Bus timings", "Local transport", "Taxi booking"]
     },
     "restaurant": {
       text: "🍽️ **Popular restaurants near you:**\n\n• **Karim's** (Mughlai) - 4.5⭐ | 15 min\n• **Saravana Bhavan** (South Indian) - 4.3⭐ | 10 min\n• **United Coffee House** (Continental) - 4.2⭐ | 8 min\n\n*All are tourist-friendly with English menus*",
@@ -38,11 +38,11 @@ const ChatBot = () => {
       suggestions: ["Emergency numbers", "Pharmacy locations", "Insurance help"]
     },
     "atm": {
-      text: "🏧 **ATMs near Connaught Place:**\n\n• **SBI ATM** - Inner Circle, CP (2 min)\n• **HDFC Bank ATM** - Palika Bazaar (3 min)\n• **ICICI Bank ATM** - Janpath (5 min)\n\n*All accept international cards*",
+      text: "🏧 **ATMs near Police Bazaar:**\n\n• **SBI ATM** - Police Bazaar Main Road (2 min)\n• **HDFC Bank ATM** - Khyndai Lad (3 min)\n• **ICICI Bank ATM** - Laitumkhrah (5 min)\n\n*All accept international cards*",
       suggestions: ["Currency exchange", "Bank branches", "Money transfer"]
     },
     "police": {
-      text: "👮 **Police assistance:**\n\n• **Connaught Place Police Station** - 3 min walk\n• **Tourist Helpline:** 1363\n• **Women's Helpline:** 1091\n• **Emergency:** 100\n\n*Tourist police available 24/7*",
+      text: "👮 **Police assistance:**\n\n• **Sadar Police Station** - 3 min walk\n• **Tourist Helpline:** 1363\n• **Women's Helpline:** 1091\n• **Emergency:** 100\n\n*Tourist police available 24/7*",
       suggestions: ["Report incident", "Lost passport help", "Safety tips"]
     }
   };
