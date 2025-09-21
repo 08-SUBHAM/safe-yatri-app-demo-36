@@ -113,7 +113,7 @@ const SafeRoute = () => {
                 <div className="w-3 h-3 bg-success rounded-full"></div>
                 <div className="flex-1">
                   <p className="text-sm text-muted-foreground">From</p>
-                  <p className="font-medium">Connaught Place, Delhi</p>
+                  <p className="font-medium">Police Bazaar, Shillong</p>
                 </div>
                 <MapPin className="w-5 h-5 text-muted-foreground" />
               </div>

@@ -18,10 +18,10 @@ const RiskNews = () => {
       type: "crime",
       severity: "high",
       title: "Pickpocketing Alert - MG Road Area",
-      description: "Multiple incidents of pickpocketing reported near MG Road metro station. Tourists advised to be extra cautious.",
-      location: "MG Road, Delhi",
+      description: "Multiple incidents of pickpocketing reported near MG Road area. Tourists advised to be extra cautious.",
+      location: "MG Road, Guwahati",
       timestamp: "15 minutes ago",
-      source: "Delhi Police",
+      source: "Assam Police",
       verified: true
     },
     {
@@ -30,7 +30,7 @@ const RiskNews = () => {
       severity: "medium", 
       title: "Heavy Rain Alert",
       description: "Meteorological department warns of heavy rainfall in the next 2 hours. Flooding possible in low-lying areas.",
-      location: "Delhi NCR",
+      location: "Shillong, Meghalaya",
       timestamp: "30 minutes ago",
       source: "IMD Weather",
       verified: true
@@ -39,9 +39,9 @@ const RiskNews = () => {
       id: 3,
       type: "traffic",
       severity: "low",
-      title: "Road Closure - India Gate",
-      description: "India Gate area temporarily closed for security reasons. Use alternate routes via Rajpath.",
-      location: "India Gate, Delhi",
+      title: "Road Closure - Ward Lake Area",
+      description: "Ward Lake area temporarily closed for maintenance work. Use alternate routes via Police Bazaar.",
+      location: "Ward Lake, Shillong",
       timestamp: "45 minutes ago", 
       source: "Traffic Police",
       verified: true
@@ -50,9 +50,9 @@ const RiskNews = () => {
       id: 4,
       type: "crime",
       severity: "high",
-      title: "Tourist Scam Alert - Red Fort",
-      description: "Fake tour guides targeting foreign tourists near Red Fort. Always verify credentials before hiring guides.",
-      location: "Red Fort, Delhi",
+      title: "Tourist Scam Alert - Kamakhya Temple",
+      description: "Fake tour guides targeting tourists near Kamakhya Temple. Always verify credentials before hiring guides.",
+      location: "Kamakhya Temple, Guwahati",
       timestamp: "1 hour ago",
       source: "Tourism Authority",
       verified: true
@@ -61,11 +61,11 @@ const RiskNews = () => {
       id: 5,
       type: "safety", 
       severity: "medium",
-      title: "Protest March - Connaught Place",
-      description: "Peaceful protest march scheduled at Connaught Place from 3-5 PM. Expect crowd and traffic delays.",
-      location: "Connaught Place, Delhi",
+      title: "Cultural Festival - Police Bazaar",
+      description: "Traditional cultural festival at Police Bazaar from 3-5 PM. Expect crowd and traffic delays.",
+      location: "Police Bazaar, Shillong",
       timestamp: "2 hours ago",
-      source: "Delhi Police",
+      source: "Meghalaya Police",
       verified: true
     }
   ];

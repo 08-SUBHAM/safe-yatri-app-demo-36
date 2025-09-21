@@ -44,7 +44,7 @@ export const useAppContext = () => {
 const App = () => {
   const [user, setUser] = useState(null);
   const [safetyScore, setSafetyScore] = useState(85); // Default good score
-  const [currentLocation, setCurrentLocation] = useState("Connaught Place, Delhi");
+  const [currentLocation, setCurrentLocation] = useState("Police Bazaar, Shillong");
 
   return (
     <QueryClientProvider client={queryClient}>

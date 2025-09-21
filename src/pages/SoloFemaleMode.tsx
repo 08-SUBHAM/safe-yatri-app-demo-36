@@ -213,7 +213,7 @@ const SoloFemaleMode = () => {
                       <span className="font-medium">1363</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Delhi Women Commission:</span>
+                      <span>NE Women Helpline:</span>
                       <span className="font-medium">181</span>
                     </div>
                   </div>
