@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Send, MapPin, Clock, Phone, Star } from "lucide-react";
+import { ArrowLeft, Send, MapPin, Clock, Phone, Star, Mic, Square } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -22,12 +22,16 @@ const ChatBot = () => {
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
 
   // Mock responses for common queries
   const botResponses: { [key: string]: any } = {
     "bus stop": {
       text: "🚌 Here are the nearest bus stops to Police Bazaar:\n\n• **Police Bazaar Bus Stand** - 2 min walk\n• **Khyndai Lad Bus Stop** - 5 min walk\n• **Motphran Bus Stand** - 8 min walk\n\nBuses: Shillong City Bus, MTDC Services",
-      suggestions: ["Bus timings", "Local transport", "Taxi booking"]
+      isBot: true,
+      timestamp: new Date(),
+      suggestions: ["Nearest bus stop", "Good restaurants", "Find ATM", "Police station", "Hospital nearby"]
     },
     "restaurant": {
       text: "🍽️ **Popular restaurants near you:**\n\n• **Karim's** (Mughlai) - 4.5⭐ | 15 min\n• **Saravana Bhavan** (South Indian) - 4.3⭐ | 10 min\n• **United Coffee House** (Continental) - 4.2⭐ | 8 min\n\n*All are tourist-friendly with English menus*",
@@ -62,6 +66,67 @@ const ChatBot = () => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Setup speech recognition instance when listening toggles on
+  useEffect(() => {
+    if (!isListening) {
+      if (recognitionRef.current) {
+        try { recognitionRef.current.stop(); } catch {}
+        recognitionRef.current = null;
+      }
+      return;
+    }
+
+    // @ts-ignore
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      toast({
+        title: "Voice not supported",
+        description: "Your browser does not support speech recognition.",
+        variant: "destructive",
+      });
+      setIsListening(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = (event: any) => {
+      const transcript = Array.from(event.results)
+        .map((r: any) => r[0])
+        .map((r: any) => r.transcript)
+        .join('');
+      setInputText(transcript);
+    };
+
+    recognition.onerror = () => {
+      toast({ title: "Voice error", description: "Could not process voice input", variant: "destructive" });
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      // Automatically stop listening UI when recognition ends
+      setIsListening(false);
+    };
+
+    try {
+      recognition.start();
+      recognitionRef.current = recognition;
+    } catch {
+      setIsListening(false);
+    }
+
+    return () => {
+      try { recognition.stop(); } catch {}
+    };
+  }, [isListening, toast]);
+
+  const toggleListening = () => {
+    setIsListening((prev) => !prev);
+  };
 
   const findBestResponse = (query: string) => {
     const lowerQuery = query.toLowerCase();
@@ -153,9 +218,14 @@ const ChatBot = () => {
             </div>
           </div>
           
-          <div className="flex items-center text-sm opacity-90">
-            <div className="w-2 h-2 bg-success rounded-full mr-2"></div>
-            <span>Online & Ready to Help</span>
+          <div className="flex items-center text-sm opacity-90 gap-3">
+            <div className="flex items-center">
+              <div className="w-2 h-2 bg-success rounded-full mr-2"></div>
+              <span>Online & Ready to Help</span>
+            </div>
+            <div className="flex items-center bg-white/15 px-2 py-0.5 rounded-full text-xs">
+              <Mic className="w-3 h-3 mr-1" /> Voice Ready
+            </div>
           </div>
         </div>
 
@@ -247,6 +317,16 @@ const ChatBot = () => {
               }}
               className="flex-1"
             />
+            <Button
+              type="button"
+              onClick={toggleListening}
+              variant={isListening ? 'destructive' : 'outline'}
+              className={`${isListening ? 'bg-red-600 hover:bg-red-700 text-white' : ''}`}
+              disabled={isTyping}
+              title={isListening ? 'Stop voice input' : 'Start voice input'}
+            >
+              {isListening ? <Square className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </Button>
             <Button 
               onClick={() => handleSendMessage()}
               disabled={!inputText.trim() || isTyping}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -40,6 +40,31 @@ const Dashboard = () => {
   const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showLanguagePicker, setShowLanguagePicker] = useState(false);
+  const [attachments, setAttachments] = useState<{ file: File; url: string; kind: 'image' | 'video' }[]>([]);
+  const [showSosConfirm, setShowSosConfirm] = useState(false);
+  const photoInputRef = useRef<HTMLInputElement | null>(null);
+  const videoInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFilesSelected = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const newItems: { file: File; url: string; kind: 'image' | 'video' }[] = [];
+    Array.from(files).forEach((file) => {
+      const url = URL.createObjectURL(file);
+      const kind: 'image' | 'video' = file.type.startsWith('video') ? 'video' : 'image';
+      newItems.push({ file, url, kind });
+    });
+    setAttachments((prev) => [...prev, ...newItems]);
+  };
+
+  const removeAttachment = (idx: number) => {
+    setAttachments((prev) => {
+      const copy = [...prev];
+      const item = copy[idx];
+      if (item) URL.revokeObjectURL(item.url);
+      copy.splice(idx, 1);
+      return copy;
+    });
+  };
 
   const displayName = user?.name || 'Traveler';
   const initials = (displayName).split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
@@ -188,28 +213,11 @@ const Dashboard = () => {
       color: "text-orange-500"
     },
     {
-      title: isOfflineMode ? "Offline Mode Active" : "Offline Mode", 
-      description: isOfflineMode ? "Working offline" : "Works without internet",
-      icon: isOfflineMode ? WifiOff : Globe,
-      action: () => {
-        const newMode = !isOfflineMode;
-        setIsOfflineMode(newMode);
-        toast({
-          title: newMode ? "🔄 Offline Mode Enabled" : "🌐 Online Mode",
-          description: newMode 
-            ? "Essential features are now available offline" 
-            : "You're back online with full functionality",
-        });
-      },
-      color: isOfflineMode ? "text-blue-600" : "text-blue-500",
-      badge: isOfflineMode ? "Active" : undefined
-    },
-    {
-      title: "Voice Assistant", 
-      description: "Hands-free navigation & help",
-      icon: Mic, 
-      action: () => setIsListening(!isListening),
-      color: "text-purple-500"
+      title: "AI Chatbot", 
+      description: "Ask travel & safety questions",
+      icon: MessageCircle,
+      path: "/chatbot",
+      color: "text-blue-600"
     }
   ];
 
@@ -330,6 +338,34 @@ const Dashboard = () => {
           </div>
         )}
 
+        {/* SOS Confirmation Modal */}
+        {showSosConfirm && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-background rounded-2xl p-6 w-full max-w-sm mx-4">
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Confirm SOS</h3>
+                <p className="text-sm text-muted-foreground">Is this a real emergency? SOS will immediately alert the nearest police and your emergency contacts with your live location.</p>
+                <div className="flex justify-end gap-2 pt-2">
+                  <Button variant="outline" onClick={() => setShowSosConfirm(false)}>Not Now</Button>
+                  <Button
+                    className="bg-red-600 hover:bg-red-700"
+                    onClick={() => {
+                      setShowSosConfirm(false);
+                      toast({
+                        title: "🆘 SOS ACTIVATED",
+                        description: "Alert sent to nearest police station & emergency contacts with live location.",
+                        variant: "destructive",
+                      });
+                    }}
+                  >
+                    Yes, Proceed
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Report Misconduct Modal */}
         {showReportModal && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -344,6 +380,8 @@ const Dashboard = () => {
                       setShowReportModal(false);
                       setReportType('');
                       setReportDetails('');
+                      attachments.forEach(a => URL.revokeObjectURL(a.url));
+                      setAttachments([]);
                     }}
                   >
                     ✕
@@ -374,6 +412,65 @@ const Dashboard = () => {
                       onChange={(e) => setReportDetails(e.target.value)}
                     />
                   </div>
+
+                  {/* Attachments */}
+                  <div className="space-y-2 mt-3">
+                    <label className="text-sm font-medium">Attachments (images/videos)</label>
+                    <div className="flex flex-wrap gap-2">
+                      <input
+                        ref={photoInputRef}
+                        type="file"
+                        accept="image/*"
+                        capture="environment"
+                        multiple
+                        onChange={(e) => handleFilesSelected(e.target.files)}
+                        className="hidden"
+                      />
+                      <input
+                        ref={videoInputRef}
+                        type="file"
+                        accept="video/*"
+                        capture
+                        multiple
+                        onChange={(e) => handleFilesSelected(e.target.files)}
+                        className="hidden"
+                      />
+                      <Button type="button" variant="outline" size="sm" onClick={() => photoInputRef.current?.click()}>
+                        📷 Take Photo
+                      </Button>
+                      <Button type="button" variant="outline" size="sm" onClick={() => videoInputRef.current?.click()}>
+                        🎥 Record Video
+                      </Button>
+                      <input
+                        type="file"
+                        accept="image/*,video/*"
+                        multiple
+                        onChange={(e) => handleFilesSelected(e.target.files)}
+                        className="block w-full text-xs text-muted-foreground file:mr-3 file:py-2 file:px-3 file:rounded-md file:border file:border-input file:bg-background file:text-foreground hover:file:bg-muted"
+                      />
+                    </div>
+                    <p className="text-[10px] text-muted-foreground">Note: Camera capture depends on device/browser support.</p>
+                    {attachments.length > 0 && (
+                      <div className="grid grid-cols-3 gap-2">
+                        {attachments.map((att, idx) => (
+                          <div key={idx} className="relative group border rounded-md overflow-hidden">
+                            {att.kind === 'image' ? (
+                              <img src={att.url} alt={`attachment-${idx}`} className="w-full h-20 object-cover" />
+                            ) : (
+                              <video src={att.url} className="w-full h-20 object-cover" />
+                            )}
+                            <button
+                              type="button"
+                              className="absolute top-1 right-1 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100"
+                              onClick={() => removeAttachment(idx)}
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   
                   <div className="flex justify-end space-x-2 mt-4">
                     <Button 
@@ -382,6 +479,8 @@ const Dashboard = () => {
                         setShowReportModal(false);
                         setReportType('');
                         setReportDetails('');
+                        attachments.forEach(a => URL.revokeObjectURL(a.url));
+                        setAttachments([]);
                       }}
                       disabled={isSubmitting}
                     >
@@ -403,12 +502,14 @@ const Dashboard = () => {
                         
                         toast({
                           title: "✅ Report Submitted",
-                          description: `Your report about ${reportType} has been received. We'll review it shortly.`,
+                          description: `Your report about ${reportType} has been received with ${attachments.length} attachment(s). We'll review it shortly.`,
                         });
                         
                         setShowReportModal(false);
                         setReportType('');
                         setReportDetails('');
+                        attachments.forEach(a => URL.revokeObjectURL(a.url));
+                        setAttachments([]);
                         setIsSubmitting(false);
                       }}
                       disabled={isSubmitting}
@@ -483,13 +584,7 @@ const Dashboard = () => {
             <div className="relative inline-block">
               <Button 
                 className="sos-button w-36 h-36 rounded-full text-lg font-bold shadow-sos hover:shadow-sos-hover transition-all duration-300 hover:scale-105 relative overflow-hidden"
-                onClick={() => {
-                  toast({
-                    title: "🆘 SOS ACTIVATED",
-                    description: "Alert sent to nearest police station & emergency contacts with live location.",
-                    variant: "destructive",
-                  });
-                }}
+                onClick={() => setShowSosConfirm(true)}
               >
                 <div className="text-center relative z-10">
                   <AlertTriangle className="w-10 h-10 mx-auto mb-1 animate-pulse" />
@@ -499,8 +594,8 @@ const Dashboard = () => {
               </Button>
               
               {/* Pulse rings */}
-              <div className="absolute inset-0 rounded-full border-2 border-red-400 animate-ping opacity-50"></div>
-              <div className="absolute inset-2 rounded-full border border-red-300 animate-ping opacity-30 animation-delay-500"></div>
+              <div className="absolute inset-0 rounded-full border-2 border-red-400 animate-ping opacity-50 pointer-events-none"></div>
+              <div className="absolute inset-2 rounded-full border border-red-300 animate-ping opacity-30 animation-delay-500 pointer-events-none"></div>
             </div>
             <p className="text-sm font-medium text-muted-foreground mt-3">Emergency Assistance</p>
             <p className="text-xs text-muted-foreground">Instantly alerts police & emergency contacts</p>
@@ -551,6 +646,13 @@ const Dashboard = () => {
                               className={`w-6 h-6 mx-auto ${feature.color} group-hover:scale-110 transition-transform`} 
                             />
                           </div>
+                          {/* Mic badge to hint voice support on AI Chatbot */}
+                          {feature.title === 'AI Chatbot' && (
+                            <div className="absolute -top-1 -right-1 bg-green-600 text-white rounded-full px-1.5 py-0.5 flex items-center gap-1">
+                              <Mic className="w-3 h-3" />
+                              <span className="text-[10px] leading-none">Voice</span>
+                            </div>
+                          )}
                           {isOfflineMode && feature.title.includes('Offline') && (
                             <div className="absolute -top-1 -right-1 bg-blue-600 text-white rounded-full p-0.5">
                               <CheckCircle2 className="w-3 h-3" />
@@ -558,7 +660,9 @@ const Dashboard = () => {
                           )}
                         </div>
                         <h3 className="font-medium text-xs mb-1 text-foreground">{feature.title}</h3>
-                        <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {feature.title === 'AI Chatbot' ? 'Text + Voice assistant' : feature.description}
+                        </p>
                       </>
                     )}
                   </CardContent>

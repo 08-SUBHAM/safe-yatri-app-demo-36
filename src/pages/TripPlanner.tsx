@@ -6,12 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar as CalendarIcon, ArrowLeft, MapPin, CalendarDays, Plane } from "lucide-react";
-import { useAppContext } from "@/App";
+// import { useAppContext } from "@/App";
 import { useToast } from "@/hooks/use-toast";
 
 const TripPlanner = () => {
   const navigate = useNavigate();
-  const { setLastTripBlockchainId } = useAppContext();
   const { toast } = useToast();
   const [form, setForm] = useState({
     origin: "",
@@ -31,16 +30,7 @@ const TripPlanner = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Generate a fake blockchain-like hex ID
-    const randomHex = () => Array.from(crypto.getRandomValues(new Uint8Array(20)))
-      .map(b => b.toString(16).padStart(2, '0')).join('');
-    const id = `0x${randomHex()}`;
-    setLastTripBlockchainId(id);
-
-    toast({
-      title: "Trip created",
-      description: `Blockchain ID: ${id}`,
-    });
+    toast({ title: "Trip planned", description: "Your itinerary is ready." });
 
     navigate("/dashboard");
   };

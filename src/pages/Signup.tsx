@@ -12,7 +12,7 @@ import { useAppContext } from "@/App";
 const Signup = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { setUser } = useAppContext();
+  const { setUser, setLastTripBlockchainId } = useAppContext();
   
   const [formData, setFormData] = useState({
     fullName: "",
@@ -57,6 +57,17 @@ const Signup = () => {
         email: formData.email,
         phone: formData.phone,
         joinedDate: new Date().toISOString().slice(0, 10),
+      });
+
+      // Generate and store a fake blockchain-like ID at signup
+      const randomHex = () => Array.from(crypto.getRandomValues(new Uint8Array(20)))
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+      const signupChainId = `0x${randomHex()}`;
+      setLastTripBlockchainId(signupChainId);
+
+      toast({
+        title: "Digital Trip ID Ready",
+        description: `Blockchain ID: ${signupChainId}`,
       });
       
       // Navigate to dashboard so details appear immediately
