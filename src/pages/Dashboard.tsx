@@ -25,7 +25,6 @@ import logoImage from "@/assets/safeyatri_logo-removebg-preview.png";
 import { useAppContext } from "@/App";
 import { useToast } from "@/hooks/use-toast";
 import { ProfileSection } from "@/components/ProfileSection";
-import InstallButton from "@/components/InstallButton";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -273,7 +272,6 @@ const Dashboard = () => {
               </div>
               
               <div className="flex space-x-2 items-center">
-                <InstallButton />
                 {/* Language button to signal multilingual support */}
                 <Button 
                   variant="secondary" 
