@@ -18,6 +18,7 @@ import ChatBot from "./pages/ChatBot";
 import PoliceDashboard from "./pages/PoliceDashboard";
 import ProfileComplete from "./pages/ProfileComplete";
 import DigitalID from "./pages/DigitalID";
+import TripPlanner from "./pages/TripPlanner";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,10 @@ interface AppContextType {
   setSafetyScore: (score: number) => void;
   currentLocation: string;
   setCurrentLocation: (location: string) => void;
+  lastTripBlockchainId?: string | null;
+  setLastTripBlockchainId: (id: string | null) => void;
+  selectedLanguage: string;
+  setSelectedLanguage: (lang: string) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -45,6 +50,8 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [safetyScore, setSafetyScore] = useState(85); // Default good score
   const [currentLocation, setCurrentLocation] = useState("Police Bazaar, Shillong");
+  const [lastTripBlockchainId, setLastTripBlockchainId] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('EN');
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -56,6 +63,10 @@ const App = () => {
           setSafetyScore,
           currentLocation,
           setCurrentLocation,
+          lastTripBlockchainId,
+          setLastTripBlockchainId,
+          selectedLanguage,
+          setSelectedLanguage,
         }}
       >
         <TooltipProvider>
@@ -76,6 +87,7 @@ const App = () => {
                 <Route path="/negotiation" element={<NegotiationAssistant />} />
                 <Route path="/chatbot" element={<ChatBot />} />
                 <Route path="/police" element={<PoliceDashboard />} />
+                <Route path="/trip-planner" element={<TripPlanner />} />
               </Routes>
             </div>
           </BrowserRouter>

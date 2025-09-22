@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Settings, Edit, LogOut, Shield, Bell, HelpCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "@/App";
 
 interface ProfileSectionProps {
   user: {
@@ -19,6 +20,7 @@ interface ProfileSectionProps {
 
 export function ProfileSection({ user, onClose }: ProfileSectionProps) {
   const navigate = useNavigate();
+  const { lastTripBlockchainId } = useAppContext();
   
   const menuItems = [
     { 
@@ -92,6 +94,20 @@ export function ProfileSection({ user, onClose }: ProfileSectionProps) {
               </p>
             </Card>
           </div>
+
+          {/* Last Trip Blockchain ID */}
+          {lastTripBlockchainId && (
+            <Card className="mb-6">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Last Trip Blockchain ID</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-xs font-mono break-all bg-muted p-3 rounded">
+                  {lastTripBlockchainId}
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Menu Items */}
           <div className="space-y-2 mb-6">

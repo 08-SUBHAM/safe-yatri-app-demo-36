@@ -7,10 +7,12 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAppContext } from "@/App";
 
 const Signup = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { setUser } = useAppContext();
   
   const [formData, setFormData] = useState({
     fullName: "",
@@ -47,10 +49,18 @@ const Signup = () => {
       
       toast({
         title: "Account created!",
-        description: "Please complete your profile to continue...",
+        description: "Welcome to SafeYatri",
+      });
+      // Save basic user info to global context
+      setUser({
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        joinedDate: new Date().toISOString().slice(0, 10),
       });
       
-      navigate('/complete-profile');
+      // Navigate to dashboard so details appear immediately
+      navigate('/dashboard');
     }, 2000);
   };
 
@@ -100,7 +110,6 @@ const Signup = () => {
                   <Input
                     id="fullName"
                     name="fullName"
-                    placeholder="John Doe"
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className="h-11 text-base"
@@ -114,7 +123,6 @@ const Signup = () => {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleInputChange}
                     className="h-11 text-base"
@@ -127,7 +135,6 @@ const Signup = () => {
                   <Input
                     id="phone"
                     name="phone"
-                    placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="h-11 text-base"
@@ -156,7 +163,6 @@ const Signup = () => {
                   <Input
                     id="idNumber"
                     name="idNumber"
-                    placeholder="Enter ID number"
                     value={formData.idNumber}
                     onChange={handleInputChange}
                     className="h-11 text-base"
@@ -170,7 +176,6 @@ const Signup = () => {
                   <Input
                     id="emergencyName"
                     name="emergencyName"
-                    placeholder="Contact name"
                     value={formData.emergencyName}
                     onChange={handleInputChange}
                     className="h-11 text-base"
@@ -183,7 +188,6 @@ const Signup = () => {
                   <Input
                     id="emergencyContact"
                     name="emergencyContact"
-                    placeholder="+91 98765 43211"
                     value={formData.emergencyContact}
                     onChange={handleInputChange}
                     className="h-11 text-base"
