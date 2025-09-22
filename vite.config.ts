@@ -21,9 +21,8 @@ export default defineConfig(({ mode }) => ({
       },
       includeAssets: [
         "favicon.svg",
-        "icons/icon-192.svg",
-        "icons/icon-512.svg",
-        "icons/icon-maskable.svg",
+        "icons/logo_192.png",
+        "icons/logo_512.png",
       ],
       manifest: {
         name: "SafeYatri",
@@ -33,25 +32,8 @@ export default defineConfig(({ mode }) => ({
         background_color: "#ffffff",
         display: "standalone",
         start_url: "/",
+        scope: "/",
         icons: [
-          {
-            src: "/icons/icon-192.svg",
-            sizes: "192x192",
-            type: "image/svg+xml",
-            purpose: "any",
-          },
-          {
-            src: "/icons/icon-512.svg",
-            sizes: "512x512",
-            type: "image/svg+xml",
-            purpose: "any",
-          },
-          {
-            src: "/icons/icon-maskable.svg",
-            sizes: "512x512",
-            type: "image/svg+xml",
-            purpose: "maskable",
-          },
           // PNG icons for Android installability (must be exact sizes)
           {
             src: "/icons/logo_192.png",
