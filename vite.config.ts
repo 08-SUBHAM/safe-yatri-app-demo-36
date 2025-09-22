@@ -52,6 +52,25 @@ export default defineConfig(({ mode }) => ({
             type: "image/svg+xml",
             purpose: "maskable",
           },
+          // PNG icons for Android installability (must be exact sizes)
+          {
+            src: "/icons/logo_192.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "/icons/logo_512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "/icons/logo_512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
         ],
       },
     }),
