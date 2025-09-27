@@ -2,7 +2,7 @@
 
 ![Safe Yatri Logo](https://via.placeholder.com/150x50?text=Safe+Yatri)
 
-> 🌐 **Live Demo:** [https://safe-yatri-app-demo-36.vercel.app/](https://safe-yatri-app-demo-36.vercel.app/)
+> 🌐 **Live Demo:** [https://safe-yatri-prototype.vercel.app/](https://safe-yatri-prototype.vercel.app/)
 
 Safe Yatri is a modern, privacy-focused travel companion application designed to make your journeys safer and more convenient. Whether you're commuting daily or exploring new places, Safe Yatri provides real-time safety alerts, emergency contacts, and location sharing with your trusted circle.
 
