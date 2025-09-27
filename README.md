@@ -1,73 +1,92 @@
-# Welcome to your Lovable project
+# Safe Yatri - Your Trusted Travel Companion
 
-## Project info
+![Safe Yatri Logo](https://via.placeholder.com/150x50?text=Safe+Yatri)
 
-**URL**: https://lovable.dev/projects/54240d32-d49d-4264-90ff-29220473e197
+> 🌐 **Live Demo:** [https://safe-yatri-app-demo-36.vercel.app/](https://safe-yatri-app-demo-36.vercel.app/)
 
-## How can I edit this code?
+Safe Yatri is a modern, privacy-focused travel companion application designed to make your journeys safer and more convenient. Whether you're commuting daily or exploring new places, Safe Yatri provides real-time safety alerts, emergency contacts, and location sharing with your trusted circle.
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+- 🚨 Real-time safety alerts and notifications
+- 📍 Live location sharing with trusted contacts
+- 🆘 One-tap emergency SOS with auto-dial to local emergency services
+- 🗺️ Route planning with safety scores for different areas
+- 🌙 Night mode for better visibility during night travel
+- 🔔 Customizable alert zones and preferences
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/54240d32-d49d-4264-90ff-29220473e197) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v16 or later)
+- npm (v8 or later) or Yarn
+- Git
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/safe-yatri-app.git
+   cd safe-yatri-app
+   ```
 
-Follow these steps:
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   # Update the environment variables in .env
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🛠️ Built With
 
-**Edit a file directly in GitHub**
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
+- [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [React Router](https://reactrouter.com/) - Client-side routing
+- [Mapbox](https://www.mapbox.com/) - Maps and location services
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🤝 Contributing
 
-**Use GitHub Codespaces**
+We welcome contributions from the community! Here's how you can help:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## What technologies are used for this project?
+## 📄 License
 
-This project is built with:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📬 Contact
 
-## How can I deploy this project?
+Have questions or feedback? We'd love to hear from you!
 
-Simply open [Lovable](https://lovable.dev/projects/54240d32-d49d-4264-90ff-29220473e197) and click on Share -> Publish.
+- Email: contact@safe-yatri.com
+- Twitter: [@safeyatri](https://twitter.com/safeyatri)
+- Website: [https://safe-yatri.com](https://safe-yatri.com)
 
-## Can I connect a custom domain to my Lovable project?
+## 🙏 Acknowledgments
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Icons from [Lucide](https://lucide.dev/)
+- Inspiration from travel safety apps worldwide
+- Our amazing community of users and contributors
