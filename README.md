@@ -27,7 +27,7 @@ Safe Yatri is a modern, privacy-focused travel companion application designed to
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/safe-yatri-app.git
+   git clone https://github.com/08-Subham/safe-yatri-app.git
    cd safe-yatri-app
    ```
 
@@ -77,13 +77,7 @@ We welcome contributions from the community! Here's how you can help:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📬 Contact
 
-Have questions or feedback? We'd love to hear from you!
-
-- Email: contact@safe-yatri.com
-- Twitter: [@safeyatri](https://twitter.com/safeyatri)
-- Website: [https://safe-yatri.com](https://safe-yatri.com)
 
 ## 🙏 Acknowledgments
 
