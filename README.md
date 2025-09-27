@@ -1,86 +1,73 @@
 # Safe Yatri - Your Trusted Travel Companion
 
-![Safe Yatri Logo](https://via.placeholder.com/150x50?text=Safe+Yatri)
+> **This is a prototype version** - Features and functionality may be limited or in development
 
-> 🌐 **Live Demo:** [https://safe-yatri-prototype.vercel.app/](https://safe-yatri-prototype.vercel.app/)
+![Safe Yatri Banner](https://via.placeholder.com/1200x400/1e3a8a/ffffff?text=SafeYatri+Prototype)
 
-Safe Yatri is a modern, privacy-focused travel companion application designed to make your journeys safer and more convenient. Whether you're commuting daily or exploring new places, Safe Yatri provides real-time safety alerts, emergency contacts, and location sharing with your trusted circle.
+> **Prototype Demo:** [https://safe-yatri-prototype.vercel.app/](https://safe-yatri-prototype.vercel.app/)
 
-## ✨ Features
+## About This Prototype
 
-- 🚨 Real-time safety alerts and notifications
-- 📍 Live location sharing with trusted contacts
-- 🆘 One-tap emergency SOS with auto-dial to local emergency services
-- 🗺️ Route planning with safety scores for different areas
-- 🌙 Night mode for better visibility during night travel
-- 🔔 Customizable alert zones and preferences
+This is a working prototype of Safe Yatri, designed to demonstrate the core concept of our smart travel safety application. The prototype showcases the key features and user interface of the planned application.
 
-## 🚀 Getting Started
+### Key Features (Prototype Showcase)
 
-### Prerequisites
+- Mock Alerts - Demonstrates real-time safety notifications
+- Location Sharing - Basic demonstration of location sharing functionality
 
-- Node.js (v16 or later)
-- npm (v8 or later) or Yarn
-- Git
 
-### Installation
+## What's Working (Prototype Scope)
+
+- Sample safety alerts and notifications
+- UI components and navigation flow
+
+## Known Limitations
+
+- Uses mock data for demonstration purposes
+- Some features are simulated
+- Performance may not reflect final production build
+- Not all error cases are handled
+
+## Technology Stack
+
+This prototype is built with:
+
+- Vite - Fast frontend build tool
+- React - UI library
+- TypeScript - Type-safe JavaScript
+- Tailwind CSS - Utility-first CSS framework
+- Mapbox - Mapping and location services
+- shadcn/ui - Reusable UI components
+
+## Quick Start
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/08-Subham/safe-yatri-app.git
+   git clone https://github.com/08-SUBHAM/safe-yatri-app.git
    cd safe-yatri-app
    ```
 
 2. Install dependencies:
    ```bash
    npm install
-   # or
-   yarn install
    ```
 
-3. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Update the environment variables in .env
-   ```
-
-4. Start the development server:
+3. Start the development server:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
+4. Open [http://localhost:5173](http://localhost:5173) to view the prototype
 
-## 🛠️ Built With
+## Feedback Welcome
 
-- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
-- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
-- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
-- [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
-- [React Router](https://reactrouter.com/) - Client-side routing
-- [Mapbox](https://www.mapbox.com/) - Maps and location services
+This is a work in progress. We welcome your feedback on:
 
-## 🤝 Contributing
+- User experience
+- Feature suggestions
+- Bug reports
+- Performance issues
 
-We welcome contributions from the community! Here's how you can help:
+## License
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
-## 🙏 Acknowledgments
-
-- Icons from [Lucide](https://lucide.dev/)
-- Inspiration from travel safety apps worldwide
-- Our amazing community of users and contributors
+This prototype is proprietary and confidential. Unauthorized copying, distribution, or modification is not permitted.
